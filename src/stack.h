@@ -11,32 +11,32 @@ using std::vector;
 /**
  * @brief Represents the stack used by a nondeterministic automata
  */
-class AutomataStack {
+class Stack {
     private:
         /**
          * @private
          * @brief Structure to store symbols (strings) at
          */
-        vector<string> stack_;
+        vector<char> stack_;
     public:
         /**
          * @brief Construct a new Automata Stack object
          * 
          * @param input_symbols_set Sequence of symbols to store
          */
-        AutomataStack(const vector<string>& input_symbols_set);
+        Stack(const vector<char>& input_symbols_set);
 
         /**
          * @brief Construct a new Automata Stack object
          * 
          * @param input_symbol Unique symbol to store 
          */
-        AutomataStack(const string& input_symbol);
+        Stack(const char& input_symbol);
 
         /**
          * @brief Construct a new Automata Stack object
          */
-        AutomataStack(void);
+        Stack(void);
 
         /**
          * @brief Returns a new stack with the sequence of symbols pushed at the
@@ -47,28 +47,28 @@ class AutomataStack {
          * the vector will be at the top of the stack
          * @return const AutomataStack
          */
-        const AutomataStack Push(const vector<string>& input_symbols_set);
+        const Stack Push(const vector<char>& input_symbols_set);
 
         /**
          * @brief Returns a new stack with the symbol pushed at the top
          * 
          * @param input_symbol Unique symbol to store
          */
-        const AutomataStack Push(const string& input_symbol);
+        const Stack Push(const char& input_symbol);
 
         /**
          * @brief Returns the symbol at the top of the stack
          * 
          * @return const string 
          */
-        const string Top(void) const;
+        const char Top(void) const;
 
         /**
          * @brief Returns a new stack with the top symbol extracted
          * 
          * @return const string& Extracted symbol 
          */
-        const AutomataStack Pop(void);
+        const Stack Pop(void);
         
         /**
          * @brief Check if the stack is empty or not

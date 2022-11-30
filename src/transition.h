@@ -22,13 +22,13 @@ class Transition {
          * @private
          * @brief Symbol read from the input string in the actual state
          */
-        string input_symbol_;
+        char input_symbol_;
 
         /**
          * @private
          * @brief Symbol read from the top of the stack in the actual state
          */
-        string stack_symbol_;
+        char stack_symbol_;
 
         /**
          * @private
@@ -41,7 +41,7 @@ class Transition {
          * @private
          * @brief Sequence of symbols to write at the top of the stack
          */
-        vector<string> stack_action_;
+        vector<char> stack_action_;
 
     public:
         /**
@@ -59,10 +59,10 @@ class Transition {
          */
         Transition(
             const string& actual_state,
-            const string& input_symbol,
-            const string& stack_symbol,
+            const char& input_symbol,
+            const char& stack_symbol,
             const string& next_state,
-            const vector<string>& stack_action
+            const vector<char>& stack_action
         );
 
         /**
@@ -78,16 +78,16 @@ class Transition {
 
         /**
          * @brief Get the symbol read from the input string in the actual state
-         * @return const string& 
+         * @return const char& 
          */
-        const string& get_input_symbol(void) const;
+        const char& get_input_symbol(void) const;
 
         /**
          * @brief Get the symbol read from the top of the stack
          * in the actual state
-         * @return const string& 
+         * @return const char& 
          */
-        const string& get_stack_symbol(void) const;
+        const char& get_stack_symbol(void) const;
 
         /**
          * @brief Get the next state to transition if the input symbol and
@@ -98,9 +98,9 @@ class Transition {
 
         /**
          * @brief Get the sequence of symbols to write at the top of the stack
-         * @return const vector<string>& 
+         * @return const vector<char>& 
          */
-        const vector<string>& get_stack_action(void) const;
+        const vector<char>& get_stack_action(void) const;
 
         /**
          * @brief Get the string representation of a transition

@@ -2,10 +2,10 @@
 
 Transition::Transition(
     const string& actual_state,
-    const string& input_symbol,
-    const string& stack_symbol,
+    const char& input_symbol,
+    const char& stack_symbol,
     const string& next_state,
-    const vector<string>& stack_action
+    const vector<char>& stack_action
 ) : actual_state_(actual_state),
     input_symbol_(input_symbol),
     stack_symbol_(stack_symbol),
@@ -21,12 +21,12 @@ const string& Transition::get_actual_state(void) const {
 }
 
 
-const string& Transition::get_input_symbol(void) const {
+const char& Transition::get_input_symbol(void) const {
     return input_symbol_;
 }
 
 
-const string& Transition::get_stack_symbol(void) const {
+const char& Transition::get_stack_symbol(void) const {
     return stack_symbol_;
 }
 
@@ -36,7 +36,7 @@ const string& Transition::get_next_state(void) const {
 }
 
 
-const vector<string>& Transition::get_stack_action(void) const {
+const vector<char>& Transition::get_stack_action(void) const {
     return stack_action_;
 }
 

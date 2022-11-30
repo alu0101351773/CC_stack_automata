@@ -1,55 +1,55 @@
 #include "stack.h"
 
-AutomataStack::AutomataStack(const vector<string>& input_symbols_set):
+Stack::Stack(const vector<char>& input_symbols_set):
     stack_(input_symbols_set) {}
 
 
-AutomataStack::AutomataStack(const string& input_symbol):
+Stack::Stack(const char& input_symbol):
     stack_({input_symbol}) {}
 
 
-AutomataStack::AutomataStack(void) {}
+Stack::Stack(void) {}
 
-const AutomataStack AutomataStack::Push(const vector<string>& input_symbols_set) {
-    vector<string> updated_stack(stack_);
+const Stack Stack::Push(const vector<char>& input_symbols_set) {
+    vector<char> updated_stack(stack_);
     for (int i = input_symbols_set.size() - 1; i >= 0; i--) {
         updated_stack.push_back(input_symbols_set[i]);
     }
-    return AutomataStack(updated_stack);
+    return Stack(updated_stack);
 }
 
 
-const AutomataStack AutomataStack::Push(const string& input_symbol) {
-    vector<string> updated_stack(stack_);
+const Stack Stack::Push(const char& input_symbol) {
+    vector<char> updated_stack(stack_);
     updated_stack.push_back(input_symbol);
-    return AutomataStack(updated_stack);
+    return Stack(updated_stack);
 }
 
 
-const string AutomataStack::Top(void) const {
+const char Stack::Top(void) const {
     return stack_.back();
 }
 
 
-const AutomataStack AutomataStack::Pop(void) {
+const Stack Stack::Pop(void) {
     if (IsEmpty()) {
         throw std::logic_error("Cannot pop from empty stack");
     }
-    vector<string> updated_stack(stack_); 
+    vector<char> updated_stack(stack_); 
     updated_stack.pop_back();
-    return AutomataStack(updated_stack);
+    return Stack(updated_stack);
 }
 
 
-const bool AutomataStack::IsEmpty(void) const {
+const bool Stack::IsEmpty(void) const {
     return stack_.empty();
 }
 
 
-const string AutomataStack::ToString(void) const {
+const string Stack::ToString(void) const {
     if (stack_.size() == 0) return "[]";
-    else if (stack_.size() == 1) return "[" + stack_[0] + "]";
-    string stack_repr = "[" + stack_[0] + ": ";
+    else if (stack_.size() == 1) return "[" + string(1, stack_[0]) + "]";
+    string stack_repr = "[" + string(1, stack_[0]) + ": ";
     for (size_t i = 1; i < stack_.size(); i++) {
         stack_repr += stack_[i];
         if (i != stack_.size() - 1) stack_repr += ", ";

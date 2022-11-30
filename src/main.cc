@@ -1,12 +1,11 @@
 #include <iostream>
 #include "transition.h"
 #include "stack.h"
+#include "stack_automata.h"
 
 int main() {
-    Transition pepe("q0", "a", "S", "q1", {"0", "S"});
-    std::cout << pepe.ToString() << std::endl;
-    AutomataStack fulgencio({"a", "b", "c"});
+        
+    Transition("q0", '3', 'S', "q1", {'A', 'M'});
 
-    std::cout << "Hello, World!" << std::endl;
     return 0;
 }
