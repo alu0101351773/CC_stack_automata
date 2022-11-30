@@ -47,14 +47,14 @@ class Stack {
          * the vector will be at the top of the stack
          * @return const Stack
          */
-        const Stack Push(const vector<char>& input_symbols_set);
+        Stack Push(const vector<char>& input_symbols_set);
 
         /**
          * @brief Returns a new stack with the symbol pushed at the top
          * 
          * @param input_symbol Unique symbol to store
          */
-        const Stack Push(const char& input_symbol);
+        Stack Push(const char& input_symbol);
 
         /**
          * @brief Returns the symbol at the top of the stack
@@ -68,7 +68,7 @@ class Stack {
          * 
          * @return const Stack Extracted symbol 
          */
-        const Stack Pop(void);
+        Stack Pop(void);
         
         /**
          * @brief Check if the stack is empty or not

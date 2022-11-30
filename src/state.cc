@@ -3,7 +3,7 @@
 State::State(
     const string& actual_state,
     const string& actual_string,
-    const Stack& actual_stack,
+    const Stack actual_stack,
     const vector<Transition>& possible_transitions
 ) : actual_state_(actual_state),
     actual_string_(actual_string),
@@ -21,7 +21,7 @@ const string& State::GetActualString(void) const {
 }
 
 
-const Stack& State::GetActualStack(void) const {
+Stack State::GetActualStack(void){
     return actual_stack_;
 }
 

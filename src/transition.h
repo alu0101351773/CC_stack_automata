@@ -7,6 +7,8 @@
 using std::string;
 using std::vector;
 
+#define EPSILON_SYMBOL '.'
+
 /**
  * @brief Represents a transition in a nondeterministic automata
  */

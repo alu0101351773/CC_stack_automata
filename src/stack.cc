@@ -10,7 +10,7 @@ Stack::Stack(const char& input_symbol):
 
 Stack::Stack(void) {}
 
-const Stack Stack::Push(const vector<char>& input_symbols_set) {
+Stack Stack::Push(const vector<char>& input_symbols_set) {
     vector<char> updated_stack(stack_);
     for (int i = input_symbols_set.size() - 1; i >= 0; i--) {
         updated_stack.push_back(input_symbols_set[i]);
@@ -19,7 +19,7 @@ const Stack Stack::Push(const vector<char>& input_symbols_set) {
 }
 
 
-const Stack Stack::Push(const char& input_symbol) {
+Stack Stack::Push(const char& input_symbol) {
     vector<char> updated_stack(stack_);
     updated_stack.push_back(input_symbol);
     return Stack(updated_stack);
@@ -31,7 +31,7 @@ const char Stack::Top(void) const {
 }
 
 
-const Stack Stack::Pop(void) {
+Stack Stack::Pop(void) {
     if (IsEmpty()) {
         throw std::logic_error("Cannot pop from empty stack");
     }

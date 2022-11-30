@@ -54,7 +54,7 @@ class State {
         State(
             const string& actual_state,
             const string& actual_string,
-            const Stack& actual_stack,
+            const Stack actual_stack,
             const vector<Transition>& possible_transitions
         );
 
@@ -77,7 +77,7 @@ class State {
          * 
          * @return const Stack& 
          */
-        const Stack& GetActualStack(void) const;
+        Stack GetActualStack(void);
 
         /**
          * @brief Get the Possible Transitions object
