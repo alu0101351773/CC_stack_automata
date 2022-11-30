@@ -2,11 +2,10 @@
 #define STACK_H
 
 #include <string>
-#include <stack>
 #include <vector>
+#include <stdexcept>
 
 using std::string;
-using std::stack;
 using std::vector;
 
 /**
@@ -18,7 +17,7 @@ class AutomataStack {
          * @private
          * @brief Structure to store symbols (strings) at
          */
-        stack<string> stack_;
+        vector<string> stack_;
     public:
         /**
          * @brief Construct a new Automata Stack object
@@ -64,6 +63,8 @@ class AutomataStack {
          * @return false If the stack has stuff
          */
         const bool IsEmpty(void) const;
+
+        const string ToString(void) const;
 };
 
 #endif
