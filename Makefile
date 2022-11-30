@@ -10,4 +10,4 @@ run:
 	./${BUILD_DIR}/main
 
 clean:
-	rm -rf ${BUILD_DIR}/*
+	rm -rf ${BUILD_DIR}/* ${SRC_DIR}/main

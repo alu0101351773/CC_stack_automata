@@ -15,7 +15,7 @@ class Stack {
     private:
         /**
          * @private
-         * @brief Structure to store symbols (strings) at
+         * @brief Structure to store symbols (chars) at
          */
         vector<char> stack_;
     public:
@@ -45,7 +45,7 @@ class Stack {
          * @param input_symbols_set Sequence of symbols
          * @details The order of the symbols matters, since the first symbols in
          * the vector will be at the top of the stack
-         * @return const AutomataStack
+         * @return const Stack
          */
         const Stack Push(const vector<char>& input_symbols_set);
 
@@ -59,14 +59,14 @@ class Stack {
         /**
          * @brief Returns the symbol at the top of the stack
          * 
-         * @return const string 
+         * @return const char
          */
         const char Top(void) const;
 
         /**
          * @brief Returns a new stack with the top symbol extracted
          * 
-         * @return const string& Extracted symbol 
+         * @return const Stack Extracted symbol 
          */
         const Stack Pop(void);
         
