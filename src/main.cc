@@ -1,8 +1,9 @@
 #include <iostream>
-#include "funciones.h"
+#include "transition.h"
 
 int main() {
-    int pepe = devolverTres();
+    Transition prueba("q1", "a", "B", "q3", {"A", "M"});
+    
     std::cout << "Hello, World!" << std::endl;
     return 0;
 }
