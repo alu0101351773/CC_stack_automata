@@ -101,6 +101,13 @@ class Transition {
          * @return const vector<string>& 
          */
         const vector<string>& get_stack_action(void) const;
+
+        /**
+         * @brief Get the string representation of a transition
+         * 
+         * @return const string transition in string format
+         */
+        const string ToString(void) const;
 };
 
 #endif
