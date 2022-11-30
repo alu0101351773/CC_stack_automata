@@ -1,34 +1,43 @@
 #include "stack.h"
 
-AutomataStack::AutomataStack(const vector<string>& input_symbols_set) {
-    Push(input_symbols_set);
-}
+AutomataStack::AutomataStack(const vector<string>& input_symbols_set):
+    stack_(input_symbols_set) {}
 
 
-AutomataStack::AutomataStack(const string& input_symbol) {
-    Push(input_symbol);
-}
+AutomataStack::AutomataStack(const string& input_symbol):
+    stack_({input_symbol}) {}
 
 
-void AutomataStack::Push(const vector<string>& input_symbols_set) {
+AutomataStack::AutomataStack(void) {}
+
+const AutomataStack AutomataStack::Push(const vector<string>& input_symbols_set) {
+    vector<string> updated_stack(stack_);
     for (int i = input_symbols_set.size() - 1; i >= 0; i--) {
-        stack_.push_back(input_symbols_set[i]);
+        updated_stack.push_back(input_symbols_set[i]);
     }
+    return AutomataStack(updated_stack);
 }
 
 
-void AutomataStack::Push(const string& input_symbol) {
-    stack_.push_back(input_symbol);
+const AutomataStack AutomataStack::Push(const string& input_symbol) {
+    vector<string> updated_stack(stack_);
+    updated_stack.push_back(input_symbol);
+    return AutomataStack(updated_stack);
 }
 
 
-const string AutomataStack::Pop(void) {
+const string AutomataStack::Top(void) const {
+    return stack_.back();
+}
+
+
+const AutomataStack AutomataStack::Pop(void) {
     if (IsEmpty()) {
         throw std::logic_error("Cannot pop from empty stack");
-    } 
-    string extracted_value = stack_.back();
-    stack_.pop_back();
-    return extracted_value;
+    }
+    vector<string> updated_stack(stack_); 
+    updated_stack.pop_back();
+    return AutomataStack(updated_stack);
 }
 
 

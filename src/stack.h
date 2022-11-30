@@ -34,27 +34,41 @@ class AutomataStack {
         AutomataStack(const string& input_symbol);
 
         /**
-         * @brief Push a sequence of symbols to the stack in order
+         * @brief Construct a new Automata Stack object
+         */
+        AutomataStack(void);
+
+        /**
+         * @brief Returns a new stack with the sequence of symbols pushed at the
+         * top
          * 
          * @param input_symbols_set Sequence of symbols
          * @details The order of the symbols matters, since the first symbols in
          * the vector will be at the top of the stack
+         * @return const AutomataStack
          */
-        void Push(const vector<string>& input_symbols_set);
+        const AutomataStack Push(const vector<string>& input_symbols_set);
 
         /**
-         * @brief Push a unique symbol to the stack
+         * @brief Returns a new stack with the symbol pushed at the top
          * 
          * @param input_symbol Unique symbol to store
          */
-        void Push(const string& input_symbol);
+        const AutomataStack Push(const string& input_symbol);
 
         /**
-         * @brief Extract a symbol from the top of the stack 
+         * @brief Returns the symbol at the top of the stack
+         * 
+         * @return const string 
+         */
+        const string Top(void) const;
+
+        /**
+         * @brief Returns a new stack with the top symbol extracted
          * 
          * @return const string& Extracted symbol 
          */
-        const string Pop(void);
+        const AutomataStack Pop(void);
         
         /**
          * @brief Check if the stack is empty or not
@@ -64,6 +78,11 @@ class AutomataStack {
          */
         const bool IsEmpty(void) const;
 
+        /**
+         * @brief Represent a stack as a string
+         * 
+         * @return const string 
+         */
         const string ToString(void) const;
 };
 
