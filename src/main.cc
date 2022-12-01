@@ -6,15 +6,14 @@
 int main() {
         
     Transition p1("q0", '3', 'S', "q1", {'A', 'M'});
-    Transition p2("q0", '3', 'S', "q1", {'A', 'M'});
-    Transition p5("q0", '3', 'm', "q1", {'A', 'M'});
-    Transition p3("q1", '3', 'S', "q1", {'A', 'M'});
-    Transition p4("q2", '3', 'S', "q1", {'A', 'M'});
+    Transition p2("q0", '5', 'S', "q1", {'A', 'M'});
+    Transition p3("q1", 'S', 'A', "q2", {'P'});
+    Transition p4("q2", '.', 'P', "q3", {});
 
-    vector<Transition> vector_transiciones = {p1, p2, p3, p4, p5};
+    vector<Transition> vector_transiciones = {p1, p2, p3, p4};
     set<string> estados_automata;
     set<char> simbolos_alfabeto;
-    simbolos_alfabeto.insert('3');
+        simbolos_alfabeto.insert('3');
     set<char> simbolos_pila;
     string estado_inicial = "q0";
     char simbolo_inicial_stack = 'S';
@@ -30,7 +29,7 @@ int main() {
         vector_transiciones
     );
 
-    pepe.isAccepted("3SAT");
+    std::cout << (pepe.isAccepted("3S") ? "YES" : "NO") << std::endl;
 
     return 0;
 }

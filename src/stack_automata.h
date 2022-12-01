@@ -49,7 +49,12 @@ class StackAutomata {
         const bool isAccepted(const string& word);
     
     private:
-        void FirstStep(const string& word); 
+        void FirstStep(const string& word);
+
+        vector<Transition> FindTransitions(const string& actual_state,
+            const char& actual_symbol,
+            const char& actual_stack_symbol
+        );
 };
 
 #endif
