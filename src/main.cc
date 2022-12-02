@@ -31,6 +31,10 @@ int main() {
     );
 
     std::cout << (pepe.isAccepted("3S") ? "YES" : "NO") << std::endl;
+    std::cout << (pepe.isAccepted("3D") ? "YES" : "NO") << std::endl;
+    std::cout << (pepe.isAccepted("3S") ? "YES" : "NO") << std::endl;
+    std::cout << (pepe.isAccepted("5") ? "YES" : "NO") << std::endl;
+
 
     return 0;
 }

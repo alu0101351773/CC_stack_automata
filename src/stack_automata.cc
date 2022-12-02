@@ -68,7 +68,6 @@ const bool StackAutomata::isAccepted(const string& word) {
             ));
         }
     }
-    // ...
     return false;
 }
 

@@ -1,3 +1,4 @@
+# Sep
 
 BUILD_DIR = build
 SRC_DIR = src
@@ -10,4 +11,4 @@ run:
 	./${BUILD_DIR}/main.out
 
 clean:
-	rm -rf ${BUILD_DIR}/* ${SRC_DIR}/main
+	rm -rf ${BUILD_DIR}/* ${SRC_DIR}/*.out
