@@ -32,24 +32,24 @@ const bool StackAutomata::isAccepted(const string& word) {
         // Extraemos el estado del frente de la cola
         State front_state = automata_queue_.front();
         automata_queue_.pop();
-        // Comprobamos la cadena está vacía y no existen más transiciones
         // TODO: Esta comprobacion no es, es solo comprobar si la cadena esta vacia
-        if (front_state.GetPossibleTransitions().empty()) {
-            // si lo está miramos el estado en el que nos encontramos
-            // si este estado pertenece a los estados de aceptacion: true
-            // si no: descartamos y seguimos por otro camino
+        if (front_state.GetActualString() == ".") {
             if (final_states_.find(front_state.GetActualState()) != final_states_.end()) {
                 return true;
             }
-            continue;
-        }  
+            // NOTE: Este continue estrictamente no va
+            // continue;
+        }
         vector<Transition> possible_transition = front_state.GetPossibleTransitions();
         for (size_t i = 0; i < possible_transition.size(); i++)
         {
             string new_state = possible_transition[i].get_next_state();
-            string new_string = front_state
-                .GetActualString()
-                .substr(1, front_state.GetActualString().size() - 2);
+            string new_string;
+            if (front_state.GetActualString().size() == 1) {
+                new_string = ".";
+            } else {
+                new_string = front_state.GetActualString().substr(1);
+            }
             vector<char> stack_action = possible_transition[i].get_stack_action();
             Stack new_stack = front_state
                 .GetActualStack()
@@ -60,12 +60,6 @@ const bool StackAutomata::isAccepted(const string& word) {
                 new_string[0],
                 new_stack.Top()
             );
-            // Metemos en la cola un nuevo estado que sea "what if le aplicamos I transición al estado original"
-            // Se cambia de estado
-            // Se cambia la string (puede que se reduzca o se quede igual)
-            // Se cambia la pila (siempre se va a leer)
-            // Se cambia la pila (puede ser que se escriba 1 o más weas en la pila)
-            // Se calculan las siguiente transiciones posibles
             automata_queue_.push(State(
                 new_state,
                 new_string,
@@ -100,10 +94,10 @@ vector<Transition> StackAutomata::FindTransitions(const string& actual_state,
     vector<Transition> possible_transitions;
     for (size_t i = 0; i < transition_list_.size(); i++)
     {
-        if (transition_list_[i].get_actual_state() == initial_state_ &&
+        if (transition_list_[i].get_actual_state() == actual_state &&
                 (transition_list_[i].get_input_symbol() == actual_symbol ||
                  transition_list_[i].get_input_symbol() == EPSILON_SYMBOL) &&
-            transition_list_[i].get_stack_symbol() == stack_.Top())
+            transition_list_[i].get_stack_symbol() == actual_stack_symbol)
         {
             possible_transitions.push_back(transition_list_[i]);
         }

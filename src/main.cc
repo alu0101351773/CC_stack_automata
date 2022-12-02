@@ -18,6 +18,7 @@ int main() {
     string estado_inicial = "q0";
     char simbolo_inicial_stack = 'S';
     set<string> estados_finales;
+        estados_finales.insert("q2");
 
     StackAutomata pepe(
         estados_automata,
