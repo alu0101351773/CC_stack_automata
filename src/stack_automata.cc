@@ -11,12 +11,30 @@ StackAutomata::StackAutomata(
 ) :
     automata_states_(automata_states),
     alphabet_symbols_(alphabet_symbols),
-    stack_symbols_(stack_symbols),
-    initial_state_(initial_state),
-    stack_(stack_initial_symbol),
-    final_states_(final_states),
-    transition_list_(transition_list)
-{ }
+    stack_symbols_(stack_symbols)
+{ 
+    if (automata_states_.find(initial_state) == automata_states_.end()) {
+        throw std::runtime_error("Unrecognized initial states");
+    }
+    initial_state_ = initial_state;
+    if (stack_symbols_.find(stack_initial_symbol) == stack_symbols_.end()) {
+        throw std::runtime_error("Unrecognized stack symbol");
+    }
+    stack_ = Stack(stack_initial_symbol);
+    for (set<string>::iterator i = final_states.begin(); i != final_states.end(); i++) {
+        if (automata_states_.find(*i) == automata_states_.end()) {
+            throw std::runtime_error("Final state not contained within state set");
+        }
+    }
+    final_states_ = final_states;
+    for (size_t i = 0; i < transition_list.size(); i++)
+    {
+        if (!CheckTransition(transition_list[i])) {
+            throw std::runtime_error("Invalid transition");
+        }
+    }
+    transition_list_ = transition_list;
+}
 
 
 const bool StackAutomata::isAccepted(const string& word) {
@@ -32,9 +50,6 @@ const bool StackAutomata::isAccepted(const string& word) {
         State front_state = automata_queue_.front();
         automata_queue_.pop();
         
-        // TODO: Check if the readed state is in the automata state list
-        // TODO: Check if the symbol and the stack symbols are in the alphabets of the automata
-
         if (front_state.GetActualString() == ".") { // "." == empty string
             if (final_states_.find(front_state.GetActualState()) != final_states_.end()) {
                 return true;
@@ -121,17 +136,27 @@ vector<State> StackAutomata::ReachNewStates(State front_state) {
     return accessible_states;
 }
 
-// TODO
-const bool StackAutomata::VerificateState(const State& state) const {
-    
-    // Check if original state is contained in automata_states_
 
-    // Check if next state is contained in automata_states_
-
-    // Check if input symbol is contained in alphabet_symbols_
-
-    // Check if stack symbol is contained in stack_simbols_
-
-    // Everything fine, the state is valid
+const bool StackAutomata::CheckTransition(const Transition& transition) const {
+    if (automata_states_.find(transition.get_actual_state()) == automata_states_.end()) {
+        return false;
+    }
+    if (automata_states_.find(transition.get_next_state()) == automata_states_.end()) {
+        return false;
+    }
+    if (alphabet_symbols_.find(transition.get_input_symbol()) == alphabet_symbols_.end()) {
+        if (transition.get_input_symbol() != '.') {
+            return false;
+        }
+    }
+    if (stack_symbols_.find(transition.get_stack_symbol()) == stack_symbols_.end()) {
+        return false;
+    }
+    for (size_t i = 0; i < transition.get_stack_action().size(); i++)
+    {
+        if (stack_symbols_.find(transition.get_stack_action()[i]) == stack_symbols_.end()) {
+            return false;
+        }
+    }
     return true;
 }

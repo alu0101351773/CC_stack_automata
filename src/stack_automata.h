@@ -5,6 +5,7 @@
 #include <string>
 #include <set>
 #include <queue>
+#include <stdexcept>
 
 #include "transition.h"
 #include "stack.h"
@@ -136,15 +137,14 @@ class StackAutomata {
         vector<State> ReachNewStates(State front_state);
 
         /**
-         * @brief Check if all the components of a given states are within the
-         * bounds of the autiomata
+         * @brief Chech if all the values of a transition are within the
+         * automata sets
          * 
-         * @param state state to be analyzed
-         * @return true if the state, next state, input, stack and so one are
-         * valid
-         * @return false otherwise 
+         * @param transition transition to check 
+         * @return true if everything okay
+         * @return false if transition shitt-o
          */
-        const bool VerificateState(const State& state) const;
+        const bool CheckTransition(const Transition& transition) const;
 };
 
 #endif

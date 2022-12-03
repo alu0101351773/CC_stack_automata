@@ -12,9 +12,19 @@ int main() {
 
     vector<Transition> vector_transiciones = {p1, p2, p3, p4};
     set<string> estados_automata;
+        estados_automata.insert("q0");
+        estados_automata.insert("q1");
+        estados_automata.insert("q2");
+        estados_automata.insert("q3");
     set<char> simbolos_alfabeto;
         simbolos_alfabeto.insert('3');
+        simbolos_alfabeto.insert('5');
+        simbolos_alfabeto.insert('S');
     set<char> simbolos_pila;
+        simbolos_pila.insert('S');
+        simbolos_pila.insert('A');
+        simbolos_pila.insert('M');
+        simbolos_pila.insert('P');
     string estado_inicial = "q0";
     char simbolo_inicial_stack = 'S';
     set<string> estados_finales;
