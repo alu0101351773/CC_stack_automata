@@ -24,48 +24,27 @@ const bool StackAutomata::isAccepted(const string& word) {
     if (alphabet_symbols_.find(starting_symbol) == alphabet_symbols_.end()) {
         return false;
     }
-    // 1º paso: Introducir el estado inicial en la pila
+    // 1º: Insert initial state in the stack
     FirstStep(word);
 
-    // 2º paso: Recorrer la cola de transiciones
+    // 2º: Explore the transition queue
     while (!automata_queue_.empty()) {
-        // Extraemos el estado del frente de la cola
         State front_state = automata_queue_.front();
         automata_queue_.pop();
-        // TODO: Esta comprobacion no es, es solo comprobar si la cadena esta vacia
-        if (front_state.GetActualString() == ".") {
+        
+        // TODO: Check if the readed state is in the automata state list
+        // TODO: Check if the symbol and the stack symbols are in the alphabets of the automata
+
+        if (front_state.GetActualString() == ".") { // "." == empty string
             if (final_states_.find(front_state.GetActualState()) != final_states_.end()) {
                 return true;
             }
-            // NOTE: Este continue estrictamente no va
-            // continue;
         }
-        vector<Transition> possible_transition = front_state.GetPossibleTransitions();
-        for (size_t i = 0; i < possible_transition.size(); i++)
-        {
-            string new_state = possible_transition[i].get_next_state();
-            string new_string;
-            if (front_state.GetActualString().size() == 1) {
-                new_string = ".";
-            } else {
-                new_string = front_state.GetActualString().substr(1);
+        vector<State> accessible_states = ReachNewStates(front_state);
+        if (!accessible_states.empty()) {   // No available states
+            for (size_t i = 0; i < accessible_states.size(); i++) {
+                automata_queue_.push(accessible_states[i]);
             }
-            vector<char> stack_action = possible_transition[i].get_stack_action();
-            Stack new_stack = front_state
-                .GetActualStack()
-                .Pop()
-                .Push(stack_action);
-            vector<Transition> new_transitions = FindTransitions(
-                new_state,
-                new_string[0],
-                new_stack.Top()
-            );
-            automata_queue_.push(State(
-                new_state,
-                new_string,
-                new_stack,
-                new_transitions
-            ));
         }
     }
     return false;
@@ -102,4 +81,57 @@ vector<Transition> StackAutomata::FindTransitions(const string& actual_state,
         }
     }
     return possible_transitions;
+}
+
+
+vector<State> StackAutomata::ReachNewStates(State front_state) {
+    vector<State> accessible_states;
+    vector<Transition> possible_transition = front_state.GetPossibleTransitions();
+    for (size_t i = 0; i < possible_transition.size(); i++)
+    {
+        string new_state = possible_transition[i].get_next_state();
+        string new_string;
+        if (possible_transition[i].get_input_symbol() == EPSILON_SYMBOL){   // No se consume entrada
+            new_string = front_state.GetActualString();
+        } else {    // Se consume entrada
+            if (front_state.GetActualString().size() == 1) {
+                new_string = ".";
+            } else {
+                new_string = front_state.GetActualString().substr(1);
+            }
+        }
+        vector<char> stack_action = possible_transition[i].get_stack_action();
+        Stack new_stack = front_state
+            .GetActualStack()
+            .Pop()
+            .Push(stack_action);
+        vector<Transition> new_transitions = FindTransitions(
+            new_state,
+            new_string[0],
+            new_stack.Top()
+        );
+        if (new_transitions.empty()) continue;
+        accessible_states.push_back(State(
+            new_state,
+            new_string,
+            new_stack,
+            new_transitions
+        ));
+    }
+    return accessible_states;
+}
+
+// TODO
+const bool StackAutomata::VerificateState(const State& state) const {
+    
+    // Check if original state is contained in automata_states_
+
+    // Check if next state is contained in automata_states_
+
+    // Check if input symbol is contained in alphabet_symbols_
+
+    // Check if stack symbol is contained in stack_simbols_
+
+    // Everything fine, the state is valid
+    return true;
 }
