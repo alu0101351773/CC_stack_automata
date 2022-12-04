@@ -50,10 +50,12 @@ const bool StackAutomata::IsAccepted(const string& word) {
         automata_queue_.pop();
 
         if (alphabet_symbols_.find(front_state.GetActualString()[0]) == alphabet_symbols_.end()) {
-            return false;
+            if (front_state.GetActualString()[0] != EPSILON_SYMBOL) {
+                return false;
+            }
         }
         
-        if (iter_counter == SA_MAX_ITERATIONS) break;;
+        if (iter_counter == SA_MAX_ITERATIONS) break;
 
         if (front_state.GetActualString() == string(1, EPSILON_SYMBOL)) { // "." == empty string
             if (final_states_.find(front_state.GetActualState()) != final_states_.end()) {
