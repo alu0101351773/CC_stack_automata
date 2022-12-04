@@ -38,7 +38,6 @@ StackAutomata::StackAutomata(
 
 
 const bool StackAutomata::IsAccepted(const string& word, const bool verbose) {
-    char starting_symbol = word[0];
     // 1º: Insert initial state in the stack
     FirstStep(word);
 

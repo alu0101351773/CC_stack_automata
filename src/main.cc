@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
     FileHandler input(argv[1]);
     StackAutomata solver(input.GetAutomata());
     
-    for (size_t i = param_start; i < argc; i++) {
+    for (int i = param_start; i < argc; i++) {
         string result = (solver.IsAccepted(argv[i], verbose) ? "yes" : "no");
         std::cout << "[" + string(argv[i]) + "]: " + result << "\n\n";
     }
