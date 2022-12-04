@@ -39,18 +39,23 @@ StackAutomata::StackAutomata(
 
 const bool StackAutomata::IsAccepted(const string& word) {
     char starting_symbol = word[0];
-    if (alphabet_symbols_.find(starting_symbol) == alphabet_symbols_.end()) {
-        return false;
-    }
     // 1º: Insert initial state in the stack
     FirstStep(word);
+
+    int iter_counter = 0;
 
     // 2º: Explore the transition queue
     while (!automata_queue_.empty()) {
         State front_state = automata_queue_.front();
         automata_queue_.pop();
+
+        if (alphabet_symbols_.find(front_state.GetActualString()[0]) == alphabet_symbols_.end()) {
+            return false;
+        }
         
-        if (front_state.GetActualString() == ".") { // "." == empty string
+        if (iter_counter == SA_MAX_ITERATIONS) break;;
+
+        if (front_state.GetActualString() == string(1, EPSILON_SYMBOL)) { // "." == empty string
             if (final_states_.find(front_state.GetActualState()) != final_states_.end()) {
                 return true;
             }
@@ -68,6 +73,7 @@ const bool StackAutomata::IsAccepted(const string& word) {
                 automata_queue_.push(accessible_states[i]);
             }
         }
+        iter_counter++;
     }
     return false;
 }
@@ -117,7 +123,7 @@ vector<State> StackAutomata::ReachNewStates(State front_state) {
             new_string = front_state.GetActualString();
         } else {    // Se consume entrada
             if (front_state.GetActualString().size() == 1) {
-                new_string = ".";
+                new_string = string(1, EPSILON_SYMBOL);
             } else {
                 new_string = front_state.GetActualString().substr(1);
             }
@@ -152,7 +158,7 @@ const bool StackAutomata::CheckTransition(const Transition& transition) const {
         return false;
     }
     if (alphabet_symbols_.find(transition.get_input_symbol()) == alphabet_symbols_.end()) {
-        if (transition.get_input_symbol() != '.') {
+        if (transition.get_input_symbol() != EPSILON_SYMBOL) {
             return false;
         }
     }

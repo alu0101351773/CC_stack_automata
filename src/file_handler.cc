@@ -90,7 +90,7 @@ Transition FileHandler::ParseTransition(const string& buffer) {
     
     vector<char> stack_action;
     while (token >> element) {
-        if (element == ".") {
+        if (element == string(1, EPSILON_SYMBOL)) {
             stack_action.resize(0);
             break;
         }
