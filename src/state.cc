@@ -29,5 +29,10 @@ const vector<Transition>& State::GetPossibleTransitions(void) const {
 
 
 const string State::ToString(void) const {
-    return actual_state_ + ", \"" + actual_string_ + "\", " + actual_stack_.ToString(); 
+    string output = actual_state_ + ", \"" + actual_string_ + "\", " + actual_stack_.ToString(); 
+    for (size_t i = 0; i < possible_transitions_.size(); i++)
+    {
+        output += "\n\t" + possible_transitions_[i].ToString();
+    }
+    return output;
 }
