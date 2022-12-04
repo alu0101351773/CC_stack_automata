@@ -38,11 +38,7 @@ StackAutomata FileHandler::GetAutomata(void){
         transition_list.push_back(ParseTransition(buffer));
     }
 
-    return StackAutomata(
-        states,
-        alphabet,
-        stack_alphabet,
-        initial_state,
+    return StackAutomata(states, alphabet, stack_alphabet, initial_state,
         stack_initial_symbol,
         final_states,
         transition_list
@@ -96,11 +92,7 @@ Transition FileHandler::ParseTransition(const string& buffer) {
         }
         stack_action.push_back(element[0]);
     }
-    return Transition(
-        actual_state,
-        input_symbol,
-        stack_symbol,
-        next_state,
+    return Transition(actual_state, input_symbol, stack_symbol, next_state,
         stack_action
     );
 

@@ -1,13 +1,10 @@
 #include "transition.h"
 
-Transition::Transition(
-    const string& actual_state,
-    const char& input_symbol,
+Transition::Transition(const string& actual_state, const char& input_symbol,
     const char& stack_symbol,
     const string& next_state,
     const vector<char>& stack_action
-) : actual_state_(actual_state),
-    input_symbol_(input_symbol),
+) : actual_state_(actual_state), input_symbol_(input_symbol),
     stack_symbol_(stack_symbol),
     next_state_(next_state),
     stack_action_(stack_action) {}

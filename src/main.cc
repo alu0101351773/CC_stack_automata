@@ -9,8 +9,8 @@
 using std::string;
 
 int main(int argc, char **argv) {
-    if (argc <= 3) {
-        std::cout << "[" + string(argv[0]) + "] usage: <input_file_name> <string> [string ...]" << std::endl; 
+    if (argc < 3) {
+        std::cout << string(argv[0]) + " usage: <input_file_name> <string> [string ...]" << std::endl; 
         return 1;
     }
     FileHandler input(argv[1]);

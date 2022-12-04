@@ -5,6 +5,7 @@ SRC_DIR = src
 CPP_VERSION = c++17
 
 all:
+	@mkdir -p $(BUILD_DIR)
 	g++ -std=${CPP_VERSION} -o ${BUILD_DIR}/main.out ${SRC_DIR}/*.cc
 
 run:

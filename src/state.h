@@ -51,9 +51,7 @@ class State {
          * @param possible_transitions Possible transitions of the automata
          * given the actual state, actual string and stack
          */
-        State(
-            const string& actual_state,
-            const string& actual_string,
+        State(const string& actual_state, const string& actual_string,
             const Stack actual_stack,
             const vector<Transition>& possible_transitions
         );

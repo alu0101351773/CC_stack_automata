@@ -59,9 +59,7 @@ class Transition {
          * @param stack_action Sequence of symbols to write at the top
          * of the stack
          */
-        Transition(
-            const string& actual_state,
-            const char& input_symbol,
+        Transition(const string& actual_state, const char& input_symbol,
             const char& stack_symbol,
             const string& next_state,
             const vector<char>& stack_action

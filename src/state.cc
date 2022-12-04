@@ -1,12 +1,9 @@
 #include "state.h"
 
-State::State(
-    const string& actual_state,
-    const string& actual_string,
+State::State(const string& actual_state, const string& actual_string,
     const Stack actual_stack,
     const vector<Transition>& possible_transitions
-) : actual_state_(actual_state),
-    actual_string_(actual_string),
+) : actual_state_(actual_state), actual_string_(actual_string),
     actual_stack_(actual_stack),
     possible_transitions_(possible_transitions) {}
 

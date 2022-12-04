@@ -1,14 +1,18 @@
 #include "stack.h"
 
-Stack::Stack(const vector<char>& input_symbols_set):
-    stack_(input_symbols_set) {}
+Stack::Stack(const vector<char>& input_symbols_set): stack_(input_symbols_set) {
+
+}
 
 
-Stack::Stack(const char& input_symbol):
-    stack_({input_symbol}) {}
+Stack::Stack(const char& input_symbol): stack_({input_symbol}) {
+
+}
 
 
-Stack::Stack(void) {}
+Stack::Stack(void) {
+    
+}
 
 Stack Stack::Push(const vector<char>& input_symbols_set) {
     vector<char> updated_stack(stack_);
