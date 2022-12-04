@@ -54,6 +54,13 @@ const bool StackAutomata::IsAccepted(const string& word) {
             if (final_states_.find(front_state.GetActualState()) != final_states_.end()) {
                 return true;
             }
+            vector<Transition> last_step = front_state.GetPossibleTransitions(); 
+            for (size_t i = 0; i < last_step.size(); i++) {
+                if (final_states_.find(last_step[i].get_next_state()) != final_states_.end()) {
+                    return true;
+                }
+            }
+            
         }
         vector<State> accessible_states = ReachNewStates(front_state);
         if (!accessible_states.empty()) {   // No available states

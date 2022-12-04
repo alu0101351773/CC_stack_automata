@@ -12,3 +12,8 @@ run:
 
 clean:
 	rm -rf ${BUILD_DIR}/* ${SRC_DIR}/*.out
+
+git:
+	git add .
+	git commit -m "update"
+	git push
