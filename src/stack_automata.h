@@ -6,6 +6,7 @@
 #include <set>
 #include <queue>
 #include <stdexcept>
+#include <iostream>
 
 #include "transition.h"
 #include "stack.h"
@@ -74,7 +75,6 @@ class StackAutomata {
         Stack stack_;
 
     public:
-        // TODO: Comment this
         /**
          * @brief Construct a new Stack Automata object
          * 
@@ -104,7 +104,7 @@ class StackAutomata {
          * @return false if the string is not accepted OR the automata has
          * reached the max amount of iterations
          */
-        const bool IsAccepted(const string& word);
+        const bool IsAccepted(const string& word, bool verbose = false);
     
     private:
         /**

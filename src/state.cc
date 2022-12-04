@@ -26,3 +26,8 @@ Stack State::GetActualStack(void){
 const vector<Transition>& State::GetPossibleTransitions(void) const {
     return possible_transitions_;
 }
+
+
+const string State::ToString(void) const {
+    return actual_state_ + ", \"" + actual_string_ + "\", " + actual_stack_.ToString(); 
+}

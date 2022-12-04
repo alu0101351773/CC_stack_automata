@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}.out",
-            "args": ["input/APf.txt", "ca", "aabb"],
+            "args": ["input/APf.txt", "-v", "ca", "aabb"],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],

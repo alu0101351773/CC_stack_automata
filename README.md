@@ -20,8 +20,10 @@ make
 How to run the program:
 
 ```
-./build/main.out <input_file_name> <test_string> [test_string ...]
+./build/main.out [-v | --verbose] <input_file_name> <test_string> [test_string ...]
 ```
+
+If the `-v` flag in added, the program will show the progress of the algorithm.
 
 ## Example
 

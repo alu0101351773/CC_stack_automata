@@ -83,6 +83,8 @@ class State {
          * @return const vector<Transition>& 
          */
         const vector<Transition>& GetPossibleTransitions(void) const;
+
+        const string ToString(void) const;
 };
 
 #endif

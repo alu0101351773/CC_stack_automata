@@ -37,7 +37,7 @@ StackAutomata::StackAutomata(
 }
 
 
-const bool StackAutomata::IsAccepted(const string& word) {
+const bool StackAutomata::IsAccepted(const string& word, const bool verbose) {
     char starting_symbol = word[0];
     // 1º: Insert initial state in the stack
     FirstStep(word);
@@ -48,6 +48,7 @@ const bool StackAutomata::IsAccepted(const string& word) {
     while (!automata_queue_.empty()) {
         State front_state = automata_queue_.front();
         automata_queue_.pop();
+        if (verbose) std::cout << front_state.ToString() << std::endl;
 
         if (alphabet_symbols_.find(front_state.GetActualString()[0]) == alphabet_symbols_.end()) {
             // Epsilon cannot be included in the alphabet since it is not a symbol, so must be
