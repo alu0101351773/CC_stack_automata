@@ -37,7 +37,7 @@ StackAutomata::StackAutomata(
 }
 
 
-const bool StackAutomata::isAccepted(const string& word) {
+const bool StackAutomata::IsAccepted(const string& word) {
     char starting_symbol = word[0];
     if (alphabet_symbols_.find(starting_symbol) == alphabet_symbols_.end()) {
         return false;

@@ -104,7 +104,7 @@ class StackAutomata {
          * @return false if the string is not accepted OR the automata has
          * reached the max amount of iterations
          */
-        const bool isAccepted(const string& word);
+        const bool IsAccepted(const string& word);
     
     private:
         /**
